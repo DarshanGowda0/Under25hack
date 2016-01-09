@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -127,16 +128,20 @@ public class CustomDialog extends Dialog {
             File f = new File(file.getAbsolutePath()+"/"+filename+".mp4");
             try {
                 HttpURLConnection httpUrlConnection;
-                URL url = new URL("http://204.152.203.111/insert_song.php");
+                URL url = new URL("http://204.152.203.111/under25/insert_song.php");
                 httpUrlConnection = (HttpURLConnection) url.openConnection();
                 httpUrlConnection.setUseCaches(false);
-                httpUrlConnection.setDoOutput(true);
+                httpUrlConnection.setInstanceFollowRedirects(false);
+//                httpUrlConnection.setDoOutput(true);
+                httpUrlConnection.setDoInput(true);
 
                 httpUrlConnection.setRequestMethod("POST");
-                httpUrlConnection.setRequestProperty("Connection", "Keep-Alive");
-                httpUrlConnection.setRequestProperty("Cache-Control", "no-cache");
+//                httpUrlConnection.setRequestProperty("Connection", "Keep-Alive");
+//                httpUrlConnection.setRequestProperty("Cache-Control", "no-cache");
                 httpUrlConnection.setRequestProperty(
                         "Content-Type", "multipart/form-data;boundary=" + boundary);
+
+                FileInputStream fileInputStream = new FileInputStream(f);
 
                 DataOutputStream request = new DataOutputStream(
                         httpUrlConnection.getOutputStream());
@@ -144,7 +149,7 @@ public class CustomDialog extends Dialog {
                 request.writeBytes(twoHyphens + boundary + crlf);
                 request.writeBytes("Content-Disposition: form-data; name=\"" +
                         attachmentName + "\";filename=\"" +
-                        attachmentFileName + "\"" + crlf);
+                        f.toString() + "\"" + crlf);
                 request.writeBytes(crlf);
 
 
@@ -152,8 +157,6 @@ public class CustomDialog extends Dialog {
                 pixels = new byte[Math.min((int) f.length(), 20 * 1024)];
 
                 int length;
-                Log.d("whatisfile",""+f);
-                FileInputStream fileInputStream = new FileInputStream(f);
                 while ((length = fileInputStream.read(pixels)) != -1) {
                     request.write(pixels, 0, length);
                 }
@@ -167,7 +170,21 @@ public class CustomDialog extends Dialog {
                 request.flush();
                 request.close();
 
-                InputStream responseStream = new
+                fileInputStream.close();
+                Log.d("responsecode", "" + httpUrlConnection.getResponseCode());
+
+                DataInputStream dis = new DataInputStream(httpUrlConnection.getInputStream());
+                StringBuilder response = new StringBuilder();
+
+                String line;
+                while ((line = dis.readLine()) != null) {
+                    response.append(line).append('\n');
+                }
+
+                Log.d("response", ""+response);
+
+
+/*                InputStream responseStream = new
                         BufferedInputStream(httpUrlConnection.getInputStream());
 
                 BufferedReader responseStreamReader =
@@ -182,8 +199,7 @@ public class CustomDialog extends Dialog {
                 responseStreamReader.close();
 
                 String response = stringBuilder.toString();
-                Log.d("response", response);
-                responseStream.close();
+                responseStream.close();*/
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
