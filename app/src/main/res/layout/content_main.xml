@@ -12,5 +12,4 @@
     tools:context="com.srinath.hcfab.under25hack.MainActivity"
     tools:showIn="@layout/activity_main">
 
-
 </RelativeLayout>
