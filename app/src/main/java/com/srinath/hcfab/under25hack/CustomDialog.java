@@ -32,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class CustomDialog extends Dialog {
 
-    String attachmentName = "mySong";
+    String attachmentName = "dp";
     String attachmentFileName = "testSong.mp4";
     String crlf = "\r\n";
     String twoHyphens = "--";
@@ -132,12 +132,12 @@ public class CustomDialog extends Dialog {
                 httpUrlConnection = (HttpURLConnection) url.openConnection();
                 httpUrlConnection.setUseCaches(false);
                 httpUrlConnection.setInstanceFollowRedirects(false);
-//                httpUrlConnection.setDoOutput(true);
+                httpUrlConnection.setDoOutput(true);
                 httpUrlConnection.setDoInput(true);
 
                 httpUrlConnection.setRequestMethod("POST");
-//                httpUrlConnection.setRequestProperty("Connection", "Keep-Alive");
-//                httpUrlConnection.setRequestProperty("Cache-Control", "no-cache");
+                httpUrlConnection.setRequestProperty("Connection", "Keep-Alive");
+                httpUrlConnection.setRequestProperty("Cache-Control", "no-cache");
                 httpUrlConnection.setRequestProperty(
                         "Content-Type", "multipart/form-data;boundary=" + boundary);
 
@@ -149,7 +149,7 @@ public class CustomDialog extends Dialog {
                 request.writeBytes(twoHyphens + boundary + crlf);
                 request.writeBytes("Content-Disposition: form-data; name=\"" +
                         attachmentName + "\";filename=\"" +
-                        f.toString() + "\"" + crlf);
+                        filename + ".mp4" + "\"" + crlf);
                 request.writeBytes(crlf);
 
 
