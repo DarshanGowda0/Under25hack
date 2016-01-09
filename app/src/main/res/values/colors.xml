@@ -8,4 +8,9 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+    <color name="cus_grey">#DDD</color>
+    <color name="cus_dgrey">#666</color>
+    <color name="cus_lgrey">#999</color>
+    <color name="gradient_start">#0FFF</color>
+    <color name="gradient_end">#000</color>
 </resources>
