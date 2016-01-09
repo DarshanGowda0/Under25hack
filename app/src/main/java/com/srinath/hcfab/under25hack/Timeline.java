@@ -16,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.srinath.hcfab.under25hack.media.MediaFragment;
+
 import java.sql.Time;
 
 public class Timeline extends AppCompatActivity
@@ -40,6 +42,8 @@ public class Timeline extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            Intent in  = new Intent(Timeline.this,MainActivity.class);
+                startActivity(in);
 
             }
         });
@@ -52,6 +56,12 @@ public class Timeline extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initMediaFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, MediaFragment.newInstance())
+                .commit();
     }
 
     @Override
