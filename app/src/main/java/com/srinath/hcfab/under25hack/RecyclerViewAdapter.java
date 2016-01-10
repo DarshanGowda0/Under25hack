@@ -33,8 +33,57 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ImageLoaderConfiguration config;
     ImageLoader imageLoader;
     int[] images = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.g, R.drawable.h, R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.g, R.drawable.h};
-    ArrayList<String> arts = new ArrayList<>();
-
+    String[] songs = {"Summer of '69", "One Love", "Blank Space", "Mein rahoon ya na rahoon", "samjhawan", "Tu jaane na", "Gangnam Style", "Summer of '69", "One Love", "Blank Space", "Mein rahoon ya na rahoon", "samjhawan", "Tu jaane na", "Gangnam Style"};
+    String[] arts = {"Brayan Adams", "Blue", "Taylor Swift", "Arman Malik", "Arjith Singh", "Atif Aslam", "PSY", "Brayan Adams", "Blue", "Taylor Swift", "Arman Malik", "Arjith Singh", "Atif Aslam", "PSY"};
+    String[] lyrics = {
+            "I got my first real six-string\\nBought it at the five-and-dime\\nPlayed it till my fingers bled\\nWas the summer of '69",
+            "It's kinda funny how life can change\n" +
+                    "Can flip 180 in a matter of days\n" +
+                    "Sometimes love works in mysterious ways\n" +
+                    "One day you wake up gone without a trace",
+            "Nice to meet you, where you been?\n" +
+                    "I could show you incredible things\n" +
+                    "Magic, madness, heaven, sin\n" +
+                    "Saw you there and I thought",
+            "Main rahoon ya na rahoon\n" +
+                    "Tum mujh mein kahin baaki rehna\n" +
+                    "Mujhe neend aaye jo aakhiri\n" +
+                    "Tum khwabon mein aate rehna\n",
+            "Main tenu samjhawan ki\n" +
+                    "Na tere bina lagda jee\n" +
+                    "Main tenu samjhawan ki\n" +
+                    "Na tere bina lagda jee\n",
+            "Kaise btaayein kyun tujhko chahe yaara \nbtaa na paaye" +
+                    "Baatein dilo ki \ndekho jo baaki aken tujhe samjhaye\n" +
+                    "Tu jaane na... tu jaane na\n... tu jaane na... tu jaane na",
+            "Najeneun ttasaroun inganjeogin yeoja\n" +
+                    "Keopi hanjanui yeoyureul aneun pumgyeok inneun yeoja\n" +
+                    "Bami omyeon simjangi tteugeowojineun yeoja\n" +
+                    "Geureon banjeon inneun yeoja", "I got my first real six-string\\nBought it at the five-and-dime\\nPlayed it till my fingers bled\\nWas the summer of '69",
+            "It's kinda funny how life can change\n" +
+                    "Can flip 180 in a matter of days\n" +
+                    "Sometimes love works in mysterious ways\n" +
+                    "One day you wake up gone without a trace",
+            "Nice to meet you, where you been?\n" +
+                    "I could show you incredible things\n" +
+                    "Magic, madness, heaven, sin\n" +
+                    "Saw you there and I thought",
+            "Main rahoon ya na rahoon\n" +
+                    "Tum mujh mein kahin baaki rehna\n" +
+                    "Mujhe neend aaye jo aakhiri\n" +
+                    "Tum khwabon mein aate rehna\n",
+            "Main tenu samjhawan ki\n" +
+                    "Na tere bina lagda jee\n" +
+                    "Main tenu samjhawan ki\n" +
+                    "Na tere bina lagda jee\n",
+            "Kaise btaayein kyun tujhko chahe yaara \nbtaa na paaye" +
+                    "Baatein dilo ki \ndekho jo baaki aken tujhe samjhaye\n" +
+                    "Tu jaane na... tu jaane na\n... tu jaane na... tu jaane na",
+            "Najeneun ttasaroun inganjeogin yeoja\n" +
+                    "Keopi hanjanui yeoyureul aneun pumgyeok inneun yeoja\n" +
+                    "Bami omyeon simjangi tteugeowojineun yeoja\n" +
+                    "Geureon banjeon inneun yeoja"
+    };
 
     public RecyclerViewAdapter(Context context) {
         this.context = context;
@@ -55,9 +104,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ImageLoader.getInstance().init(config);
         imageLoader = ImageLoader.getInstance();
-        for(int i = 0;i<images.length;i++){
-            arts.add("Maroon 5");
-        }
+
     }
 
 
@@ -84,6 +131,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private void setData(final Holder holder, int position) {
 
         holder.imageLayout.setBackgroundResource(images[position]);
+        holder.song_name.setText(songs[position]);
+        holder.artist.setText(arts[position]);
+        holder.description.setText(lyrics[position]);
 
     }
 
