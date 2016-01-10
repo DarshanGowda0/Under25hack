@@ -20,6 +20,9 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 /**
  * Created by darshan on 31/10/15.
  */
@@ -29,6 +32,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static DisplayImageOptions defaultOptions;
     ImageLoaderConfiguration config;
     ImageLoader imageLoader;
+    int[] images = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.g, R.drawable.h, R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e, R.drawable.g, R.drawable.h};
+    ArrayList<String> arts = new ArrayList<>();
+
 
     public RecyclerViewAdapter(Context context) {
         this.context = context;
@@ -49,6 +55,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ImageLoader.getInstance().init(config);
         imageLoader = ImageLoader.getInstance();
+        for(int i = 0;i<images.length;i++){
+            arts.add("Maroon 5");
+        }
     }
 
 
@@ -69,36 +78,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-//        setData(holder,position);
+        setData(holder, position);
     }
 
-   /* private void setData(final Holder holder, int position) {
+    private void setData(final Holder holder, int position) {
 
-        String rentCost = context.getResources().getString(R.string.Rs) + fetchData.dataList.get(position).price;
-        holder.priceTv.setText(rentCost);
-        holder.ratingTv.setText(fetchData.dataList.get(position).rating);
-        holder.addressTv.setText(fetchData.dataList.get(position).address);
-        holder.categoryTv.setText(fetchData.dataList.get(position).category);
-//        imageLoader.displayImage(fetchData.dataList.get(position).image, (ImageAware) holder.imageLayout, defaultOptions);
-        imageLoader.loadImage("http://84.200.84.218/grab/imagesa/"+fetchData.dataList.get(position).image, new SimpleImageLoadingListener() {
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                // Do whatever you want with Bitmap
-                Drawable drawable = new BitmapDrawable(loadedImage);
-                holder.imageLayout.setBackground(drawable);
-            }
-        });
-    }*/
+        holder.imageLayout.setBackgroundResource(images[position]);
+
+    }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return images.length;
     }
 
     public class Holder extends RecyclerView.ViewHolder {
 
         RelativeLayout imageLayout;
-        TextView song_name,ratingTv,description,artist;
+        TextView song_name, ratingTv, description, artist;
 
         public Holder(View itemView) {
             super(itemView);
