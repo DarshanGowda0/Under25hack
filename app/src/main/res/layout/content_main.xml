@@ -12,6 +12,14 @@
     tools:context="com.srinath.hcfab.under25hack.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <com.tyorikan.voicerecordingvisualizer.VisualizerView
+        android:id="@+id/visualizer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/accent"
+        app:numColumns="20"
+        app:renderRange="top" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -19,6 +27,7 @@
         android:src="@drawable/ic_mic_white_24dp"
         app:civ_border_color="@color/accent"
         app:civ_border_width="2dp"
-        app:civ_fill_color="@color/primary_light" />
+        app:civ_fill_color="@color/primary_light"
+        android:id="@+id/record_song" />
 
 </RelativeLayout>

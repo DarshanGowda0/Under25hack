@@ -16,7 +16,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Timeline"
             android:label="@string/title_activity_timeline"
@@ -26,12 +26,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".PlayingNow"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_playing_now"
-            android:theme="@style/FullscreenTheme"></activity>
+             />
+        <activity android:name=".Splash"></activity>
     </application>
 
 </manifest>
