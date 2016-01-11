@@ -1,5 +1,6 @@
 package com.srinath.hcfab.under25hack;
 
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.tyorikan.voicerecordingvisualizer.RecordingSampler;
 import com.tyorikan.voicerecordingvisualizer.VisualizerView;
 
@@ -43,15 +45,51 @@ public class MainActivity extends AppCompatActivity implements RecordingSampler.
     File file;
     VisualizerView visualizerView;
     RecordingSampler recordingSampler;
+    MediaPlayer mMediaPlayer;
+    boolean clicked = false;
 
-
+    com.github.clans.fab.FloatingActionButton done,karoke;
+    FloatingActionMenu fam ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
+        done = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.done);
+        karoke = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.karaoke);
+        fam  = (FloatingActionMenu) findViewById(R.id.fab);
+        karoke.setImageResource(R.drawable.ic_play_white_24dp);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fam.close(true);
+
+            }
+        });
+
+        karoke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fam.close(true);
+
+                if (!clicked) {
+                    mMediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.kar);
+                    mMediaPlayer.start();
+                    clicked=true;
+                    karoke.setImageResource(R.drawable.ic_pause_circle_outline_white_24dp);
+                }
+                else{
+                    mMediaPlayer.pause();
+                    mMediaPlayer.stop();
+                    mMediaPlayer.release();
+                    clicked=false;
+                    karoke.setImageResource(R.drawable.ic_play_circle_outline_white_24dp);
+
+                }
+            }
+        });
 
         visualizerView  = (VisualizerView) findViewById(R.id.visualizer);
         record_song= (CircleImageView) findViewById(R.id.record_song);

@@ -42,5 +42,6 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.tyorikan:voice-recording-visualizer:1.0.3@aar'
+    compile 'com.github.clans:fab:1.6.2'
 
 }
